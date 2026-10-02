@@ -145,7 +145,10 @@ namespace zoo::cli {
             std::cout << "No zoos.\n";
             return;
         }
-        for (std::size_t i{0}; auto &&zoo: environment_.zoos()) std::cout << (i + 1) << " - " << zoo->name() << '\n';
+        for (std::size_t i{0}; auto &&zoo: environment_.zoos()) {
+            std::cout << (i + 1) << " - " << zoo->name() << '\n';
+            i++;
+        }
     }
 
     void Cli::cmd_zoo_add(const std::vector<std::string> &args) const {
@@ -196,6 +199,7 @@ namespace zoo::cli {
             if (animal == nullptr) continue;
             found = true;
             std::cout << describe_animal(*animal, i);
+            i++;
         }
         if (!found) std::cout << "No animals.\n";
     }
@@ -226,11 +230,12 @@ namespace zoo::cli {
     void Cli::cmd_animal_find(const std::vector<std::string> &args) const {
         if (args.size() != 3) throw exception::ZooException("Usage: animal find <query>");
         bool found = false;
+        int i = 0;
         for (const auto &zoo: environment_.zoos()) {
-            const std::vector<const animal::Animal *> animals = zoo->find(args[2]);
-            for (std::size_t i{0}; auto *animal: animals) {
+            for (const std::vector<const animal::Animal *> animals = zoo->find(args[2]); auto *animal: animals) {
                 found = true;
                 std::cout << describe_animal(*animal, i);
+                i++;
             }
         }
         if (!found) std::cout << "No animals found.\n";
@@ -305,6 +310,6 @@ namespace zoo::cli {
     }
 
     std::string Cli::describe_animal(const animal::Animal &animal, const std::optional<int> idx) const {
-        return std::format("{} - {} (Type: {}, Age: {}, Food/Day: {} kg, Cage: {})\n", idx.value_or(-1), animal.name(), animal_type_to_string(animal.type()), animal.age(), animal.daily_food_requirement(), animal.cage_id());
+        return std::format("{} - {} (Type: {}, Age: {}, Food/Day: {} kg, Cage: {})\n", idx.value_or(-1) + 1, animal.name(), animal_type_to_string(animal.type()), animal.age(), animal.daily_food_requirement(), animal.cage_id());
     }
 }
