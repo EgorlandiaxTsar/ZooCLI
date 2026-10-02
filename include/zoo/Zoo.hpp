@@ -21,21 +21,14 @@ namespace zoo::zoo {
         }
 
         void add_food_reserve(int amount);
-
         void remove_food_reserve(int amount);
-
         std::string describe() const;
 
         void add_animal(const std::string &name, animal::AnimalType type, int age, int food_per_day, int cage);
-
         void remove_animal(const std::string &name);
-
         void rename_animal(const std::string &name, const std::string &new_name);
-
         std::vector<const animal::Animal *> find(const std::string &query) const;
-
         void move(const std::string &name, int cage, bool swap = false);
-
         void exchange(const std::string &name, Zoo &destination, std::optional<animal::AnimalType> exchange_request = std::nullopt);
 
         const std::string &name() const { return name_; }

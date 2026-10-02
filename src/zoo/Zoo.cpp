@@ -4,7 +4,7 @@
 
 #include "animal/canine/ArcticFox.hpp"
 #include "animal/canine/Dhole.hpp"
-#include "animal/canine/SweetieFox.hpp"
+#include "animal/canine/RedFox.hpp"
 #include "animal/canine/Wolf.hpp"
 #include "animal/feline/Cheetah.hpp"
 #include "animal/feline/Jaguar.hpp"
@@ -109,7 +109,7 @@ namespace zoo::zoo {
                 break;
 
             case animal::AnimalType::RedFox:
-                new_animal = std::make_unique<animal::canine::SweetieFox>(name, age, food_per_day, cage);
+                new_animal = std::make_unique<animal::canine::RedFox>(name, age, food_per_day, cage);
                 break;
 
             case animal::AnimalType::ArcticFox:

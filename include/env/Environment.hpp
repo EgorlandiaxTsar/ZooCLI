@@ -10,11 +10,8 @@ namespace zoo::env {
     class Environment {
     public:
         void add_zoo(const std::string &name, int food_reserve, int cages_count);
-
         void remove_zoo(const std::string &name);
-
         zoo::Zoo &zoo(const std::string &name);
-
         void clear();
 
         const std::vector<std::unique_ptr<zoo::Zoo> > &zoos() const { return zoos_; }

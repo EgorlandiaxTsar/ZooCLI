@@ -23,11 +23,8 @@ namespace zoo::animal {
         }
 
         virtual std::string sound() const = 0;
-
         virtual std::string description() const = 0;
-
         virtual AnimalType type() const = 0;
-
         virtual AnimalFoodType food_type() const = 0;
 
         const std::string &name() const { return name_; }

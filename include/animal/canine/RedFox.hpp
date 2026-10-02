@@ -5,7 +5,7 @@
 
 
 namespace zoo::animal::canine {
-    class SweetieFox final : public Canine {
+    class RedFox final : public Canine {
     public:
         using Canine::Canine;
 
